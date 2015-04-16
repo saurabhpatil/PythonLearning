@@ -108,5 +108,17 @@ def string_factory(dicts,string):
 
 #####################################################################################
 
-print (string_factory(dicts,string))
+colour = [ "red", "blue", "green", "yellow", "purple", "orange", "white", "black" ]
+rand_colours = [random.choice(colour) for i in range(50)]
+
+#####################################################################################
+
+class GameScore:
+    score = tuple([5,8])
+    def __str__(self):
+        return("Player 1: {}; Player 2: {}".format(*self.score))
+
+from LearningPython import GameScore
+game = GameScore()
+print(game)
 
