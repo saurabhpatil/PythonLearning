@@ -118,7 +118,13 @@ class GameScore:
     def __str__(self):
         return("Player 1: {}; Player 2: {}".format(*self.score))
 
-from LearningPython import GameScore
-game = GameScore()
-print(game)
+class Game:
+  def __init__(self):
+    self.current_score = [0, 0]
+  
+  def score(self,player):
+    if player == 1:
+      self.current_score[0] += 1
+    elif player == 2:
+      self.current_score[1] += 1
 
