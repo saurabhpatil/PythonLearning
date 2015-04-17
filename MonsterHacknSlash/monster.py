@@ -1,6 +1,7 @@
 import random
+from combat import Combat
 
-class Monster:
+class Monster(Combat):
     sound = 'roar'
     min_hitpoints = 1
     max_hitpoints = 1
