@@ -39,7 +39,3 @@ def edit_entry():
 if __name__  ==  '__main__()':
 	db.connect()
 	db.create_tables([notes], safe = True)
-	
-	
-	
-	
