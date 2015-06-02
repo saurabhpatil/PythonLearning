@@ -14,7 +14,7 @@ for root, dirs, files in os.walk("."):
 	for dir_idx, dir in enumerate(dirs):
 		new_dir_name = str(dir_idx+1)+". "+PS_folders[dir_idx] 
 		print(dir+' --> '+new_dir_name+"\n")
-		#os.rename(dir, new_dir_name)
+		os.rename(dir, new_dir_name)
 		
 		directory_path = os.path.join(path,new_dir_name)
 		file_list = list()
@@ -26,8 +26,8 @@ for root, dirs, files in os.walk("."):
 			file_name = os.path.join(directory_path, item[0])
 			new_file_name = PS_files[file_count].replace(':', ' -').replace('/', '&')+".mp4"
 			print(item[0]+' --> '+(str(idx+1)+". "+new_file_name))
-			# os.rename(file_name, os.path.join(directory_path,
-						   # str(idx+1)+". "+new_file_name))
+			 os.rename(file_name, os.path.join(directory_path,
+						   str(idx+1)+". "+new_file_name))
 			file_count+=1
 		print("\n"+'File renaming completed: '+new_dir_name)
 		print('-'*50)
