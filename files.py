@@ -1,21 +1,19 @@
-import os, time, re, locale
+import os, time, re ,sys
 from operator import itemgetter
-from functools import cmp_to_key
 
-file_count = 0
-path = r"C:\Users\saurabh\Desktop\Big Data - The Big Picture"
+file_count = 1
+path = r"C:\Users\spatil\Desktop\PluralSight\Understanding .NET and WCF Transactions"
 os.chdir(path)
 
 PS_course = open('filelist.txt')
 PS_courselist = ('').join(PS_course.readlines())
-PS_files = re.findall('[a-z][a-z: \d]+', PS_courselist, re.I | re.M | re.X)
-PS_folders = re.findall('(^(?!\s)[a-z][a-z \d]*)', PS_courselist, re.I | re.M | re.X)
+PS_files = re.findall('[a-z.][a-z: \d,]+', PS_courselist, re.I | re.M | re.X)
+PS_folders = re.findall('(^(?!\s)[a-z.][a-z \d,]*)', PS_courselist, re.I | re.M | re.X)
 
-print(PS_folders)
 for root, dirs, files in os.walk("."):
 	for dir_idx, dir in enumerate(dirs):
-		print(dir_idx , dir, PS_folders[dir_idx])
 		new_dir_name = str(dir_idx+1)+". "+PS_folders[dir_idx] 
+		print(dir+' --> '+new_dir_name+"\n")
 		os.rename(dir, new_dir_name)
 		
 		directory_path = os.path.join(path,new_dir_name)
@@ -26,25 +24,12 @@ for root, dirs, files in os.walk("."):
 		sorted_list = sorted(file_list, key=itemgetter(1))
 		for idx, item in enumerate(sorted_list):
 			file_name = os.path.join(directory_path, item[0])
+			new_file_name = PS_files[file_count].replace(':', ' -').replace('/', '&')+".mp4"
+			print(item[0]+' --> '+(str(idx+1)+". "+new_file_name))
 			os.rename(file_name, os.path.join(directory_path,
-						   str(idx+1)+". "+PS_files[file_count]))
+						   str(idx+1)+". "+new_file_name))
 			file_count+=1
+		print("\n"+'File renaming completed: '+new_dir_name)
 		print('-'*50)
-		print('File renaming completed: '+new_dir_name)
+		file_count += 1
 	break
-
-# for directories in os.listdir(path):
-	# directory_path = os.path.join(path,directories)
-	# file_list = list()
-	# for files in os.listdir(directory_path):
-		# file_path = os.path.join(directory_path,files)
-		# file_list.append((files,time.ctime(os.stat(file_path).st_ctime)))
-	# sorted_list = sorted(file_list, key=itemgetter(1))
-	# count = 1
-	# for item in sorted_list:
-		# file_name = os.path.join(directory_path, item[0])
-		# os.rename(file_name, os.path.join(directory_path,
-                       # str(count)+". "+item[0]))
-		# count+=1
-	# print('-'*50)
-	# print('File renaming completed: '+directories)
