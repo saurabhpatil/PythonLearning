@@ -7,14 +7,15 @@ os.chdir(path)
 
 PS_course = open('filelist.txt')
 PS_courselist = ('').join(PS_course.readlines())
-PS_files = re.findall(r"[a-z.][a-z: \d,-/\'?()]+", PS_courselist, re.I | re.M | re.X)
-PS_folders = re.findall("(^(?!\s)[a-z.][a-z \d,-/\'()]*)", PS_courselist, re.I | re.M | re.X)
+PS_files = re.findall(r"[a-z.][a-z: \d,-/\'?()#\+]+", PS_courselist, re.I | re.M | re.X)
+PS_folders = re.findall("(^(?!\s)[a-z.][a-z \d,-/\'()#\+]*)", PS_courselist, re.I | re.M | re.X)
 
+print('')
 current_directory = ''
 for files in PS_files:
 	if current_directory != files and files in PS_folders:
 		if current_directory !='':
-			print(current_directory +" section contains "+str(file_count)+" files")
+			print(current_directory +":- "+str(file_count)+" files")
 		current_directory = files
 		file_count=0
 		continue
