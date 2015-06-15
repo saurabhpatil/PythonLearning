@@ -7,8 +7,8 @@ os.chdir(path)
 
 PS_course = open('filelist.txt')
 PS_courselist = ('').join(PS_course.readlines())
-PS_files = re.findall(r"[a-z.][a-z: \d,-/\'?()#\+]+", PS_courselist, re.I | re.M | re.X)
-PS_folders = re.findall("(^(?!\s)[a-z.][a-z \d,-/\'()#\+]*)", PS_courselist, re.I | re.M | re.X)
+PS_files = re.findall(r"[a-z.\$][a-z: \d,-/\'?()#\+\$]+", PS_courselist, re.I | re.M | re.X)
+PS_folders = re.findall("(^(?!\s)[a-z.\$][a-z \d,-/\'()#\+\$]*)", PS_courselist, re.I | re.M | re.X)
 
 print('')
 current_directory = ''
