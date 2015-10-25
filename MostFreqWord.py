@@ -1,4 +1,4 @@
-trttgfrimport re
+import re
 
 def checkio(text):
     most_freq_alpha = None
