@@ -1,3 +1,4 @@
+#This file is created for renaming of files in the folder heirarchy
 import os, time, re ,sys
 from operator import itemgetter
 
